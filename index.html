@@ -23,92 +23,22 @@
         <li><a href="projects.html">Projects</a></li>
       </ul>
     </div>
-    <div class="status-pill"><span class="status-dot"></span> AVAILABLE FOR HIRE</div>
   </div>
 </header>
 
 <main>
   <section class="hero">
-    <div class="wrap hero-grid">
-      <div>
-        <div class="ticket-eyebrow"><span class="num">TICKET #001</span> · NEW HIRE INTAKE</div>
-        <h1 class="display">Taylor Bentley</h1>
-        <p class="role-line">Help Desk &amp; IT Support Specialist · CIS Graduate · MBA Candidate</p>
-        <p class="lede">Computer Information Systems graduate from Louisiana Tech University with hands-on experience in customer service, computer hardware, database management, business analytics, and web-based systems. Looking to grow into a help desk, IT support, or desktop support role.</p>
-        <div class="cta-row">
-          <a class="btn primary" href="resume.html">View resume →</a>
-          <a class="btn ghost" href="about.html#contact">Get in touch ↗</a>
-        </div>
-      </div>
-
-      <div class="status-panel">
-        <div class="panel-title"><span>SKILLS</span><span>STATUS: ONLINE</span></div>
-        <ul class="skill-list">
-          <li><span class="dot"></span> MySQL</li>
-          <li><span class="dot"></span> Python</li>
-          <li><span class="dot"></span> Power BI</li>
-          <li><span class="dot"></span> Tableau</li>
-          <li><span class="dot"></span> Salesforce</li>
-          <li><span class="dot"></span> Microsoft Office</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <section class="block">
+    <canvas id="particles-canvas"></canvas>
     <div class="wrap">
-      <h2 class="section-title">What I Do</h2>
-      <div class="col-3">
-        <div class="card">
-          <span class="tag">ROLE_01</span>
-          <h3>Help Desk Support</h3>
-          <p>Assisting users, resolving technical issues, and keeping organizations' technology running smoothly.</p>
-        </div>
-        <div class="card">
-          <span class="tag">ROLE_02</span>
-          <h3>Technical Troubleshooting</h3>
-          <p>Hands-on experience with computer hardware, software, and web-based systems, paired with clear documentation.</p>
-        </div>
-        <div class="card">
-          <span class="tag">ROLE_03</span>
-          <h3>Business Analytics</h3>
-          <p>Working with MySQL, Power BI, Tableau, and Salesforce to support data-driven business decisions.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="block">
-    <div class="wrap">
-      <h2 class="section-title">Recent Tickets</h2>
-      <div class="queue">
-        <a class="queue-row" href="thrift.html">
-          <span class="queue-id">#T-03</span>
-          <span class="queue-title">
-            <h3>Thrive on Thrift Donation Management System</h3>
-            <p>Donor intake, ticketing, and scheduling system — CIS 450 capstone</p>
-          </span>
-          <span class="badge resolved">RESOLVED</span>
-          <span class="queue-arrow">→</span>
-        </a>
-        <a class="queue-row" href="chrome-extensions.html">
-          <span class="queue-id">#T-02</span>
-          <span class="queue-title">
-            <h3>Chrome Web Extensions</h3>
-            <p>Canvas GradeHub, JobTrackr, and Marketplace Deal Finder</p>
-          </span>
-          <span class="badge resolved">RESOLVED</span>
-          <span class="queue-arrow">→</span>
-        </a>
-        <a class="queue-row" href="golf.html">
-          <span class="queue-id">#T-01</span>
-          <span class="queue-title">
-            <h3>Golf</h3>
-            <p>Courses, technique, and tournaments</p>
-          </span>
-          <span class="badge progress">ONGOING</span>
-          <span class="queue-arrow">→</span>
-        </a>
+      <a class="avatar-link" href="https://www.linkedin.com/in/taylor-bentley-a34ab1236/" target="_blank" rel="noopener">
+        <img class="avatar" src="https://static.wixstatic.com/media/e7ff29_94ad614d14ad4ab481dc04c2b0b727e3~mv2.png" alt="Taylor Bentley">
+      </a>
+      <h1 class="display">Taylor Bentley</h1>
+      <p class="role-line">Help Desk &amp; IT Support Specialist · CIS Graduate · MBA Candidate</p>
+      <p class="lede">Computer Information Systems graduate from Louisiana Tech University with hands-on experience in customer service, computer hardware, database management, business analytics, and web-based systems. Looking to grow into a help desk, IT support, or desktop support role.</p>
+      <div class="cta-row">
+        <a class="btn primary" href="resume.html">View resume →</a>
+        <a class="btn ghost" href="#contact">Get in touch ↗</a>
       </div>
     </div>
   </section>
@@ -127,14 +57,93 @@
       </div>
       <div>
         <span class="label">EMAIL</span>
-        <a href="mailto:tab066@latech.edu">tab066@latech.edu</a><br><br>
+        <a href="mailto:tabentley1@gmail.com">tabentley1@gmail.com</a><br><br>
         <span class="label">LINKEDIN</span>
         <a href="https://www.linkedin.com/in/taylor-bentley-a34ab1236/" target="_blank" rel="noopener">linkedin.com/in/taylor-bentley</a>
       </div>
     </div>
-    <div class="copyright">© 2026 Taylor Bentley. Built with GitHub Pages.</div>
+    <div class="copyright">© 2026 Taylor Bentley.</div>
   </div>
 </footer>
+
+<script>
+(function(){
+  var canvas = document.getElementById('particles-canvas');
+  if (!canvas) return;
+  var ctx = canvas.getContext('2d');
+  var hero = canvas.closest('.hero');
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var particles = [];
+  var w, h, dpr;
+
+  function resize(){
+    dpr = window.devicePixelRatio || 1;
+    w = hero.clientWidth;
+    h = hero.clientHeight;
+    canvas.width = w * dpr;
+    canvas.height = h * dpr;
+    canvas.style.width = w + 'px';
+    canvas.style.height = h + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
+  function init(){
+    resize();
+    var count = Math.max(26, Math.min(65, Math.floor((w * h) / 19000)));
+    particles = [];
+    for (var i = 0; i < count; i++){
+      particles.push({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        vx: (Math.random() - 0.5) * 0.22,
+        vy: (Math.random() - 0.5) * 0.22,
+        r: Math.random() * 1.5 + 0.6
+      });
+    }
+  }
+
+  function step(){
+    ctx.clearRect(0, 0, w, h);
+    for (var i = 0; i < particles.length; i++){
+      var p = particles[i];
+      p.x += p.vx;
+      p.y += p.vy;
+      if (p.x < 0 || p.x > w) p.vx *= -1;
+      if (p.y < 0 || p.y > h) p.vy *= -1;
+    }
+    for (var a = 0; a < particles.length; a++){
+      for (var b = a + 1; b < particles.length; b++){
+        var pa = particles[a], pb = particles[b];
+        var dx = pa.x - pb.x, dy = pa.y - pb.y;
+        var dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 120){
+          ctx.strokeStyle = 'rgba(95, 184, 174, ' + (0.16 * (1 - dist / 120)) + ')';
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.moveTo(pa.x, pa.y);
+          ctx.lineTo(pb.x, pb.y);
+          ctx.stroke();
+        }
+      }
+    }
+    for (var c = 0; c < particles.length; c++){
+      var pc = particles[c];
+      ctx.beginPath();
+      ctx.arc(pc.x, pc.y, pc.r, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(232, 163, 61, 0.55)';
+      ctx.fill();
+    }
+    if (!reduceMotion) requestAnimationFrame(step);
+  }
+
+  init();
+  step();
+  window.addEventListener('resize', function(){
+    init();
+    if (reduceMotion) step();
+  });
+})();
+</script>
 
 </body>
 </html>

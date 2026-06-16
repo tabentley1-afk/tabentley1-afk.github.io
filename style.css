@@ -1,7 +1,7 @@
 /* ===================================================================
    Taylor Bentley — Portfolio
-   Design language: an internal admin-tool aesthetic, borrowed from
-   the helpdesk ticket queues and dashboards Taylor actually builds.
+   Design language: a clean admin-tool aesthetic — mono labels,
+   hairline rules, and dashboard-style structure.
    =================================================================== */
 
 :root {
@@ -122,75 +122,69 @@ img { max-width: 100%; display: block; border-radius: var(--radius); }
   border-bottom-color: var(--accent);
 }
 
-.status-pill {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  font-family: var(--font-mono);
-  font-size: 12px;
-  color: var(--accent-2);
-  letter-spacing: 0.03em;
-  white-space: nowrap;
-}
-
-.status-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--accent-2);
-  box-shadow: 0 0 0 0 var(--accent-2-soft);
-  animation: pulse 2.4s infinite;
-}
-
-@keyframes pulse {
-  0% { box-shadow: 0 0 0 0 var(--accent-2-soft); }
-  70% { box-shadow: 0 0 0 6px transparent; }
-  100% { box-shadow: 0 0 0 0 transparent; }
-}
-
 .nav-toggle { display: none; }
 
-/* ---------- ticket eyebrow (signature element) ---------- */
+/* ---------- section eyebrow (signature element) ---------- */
 
-.ticket-eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
+.eyebrow {
+  display: block;
   font-family: var(--font-mono);
   font-size: 12px;
-  letter-spacing: 0.06em;
-  color: var(--text-muted);
+  letter-spacing: 0.1em;
+  color: var(--accent-2);
   margin-bottom: 18px;
+  text-transform: uppercase;
 }
 
-.ticket-eyebrow .num { color: var(--accent); }
-
-.badge {
+.cat-pill {
   font-family: var(--font-mono);
   font-size: 11px;
   letter-spacing: 0.05em;
-  padding: 3px 8px;
+  padding: 3px 10px;
   border-radius: 999px;
-  border: 1px solid currentColor;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  white-space: nowrap;
 }
-
-.badge.open { color: var(--accent); }
-.badge.resolved { color: var(--accent-2); }
-.badge.progress { color: var(--text-muted); }
 
 /* ---------- hero ---------- */
 
 .hero {
+  position: relative;
+  overflow: hidden;
   padding: 64px 0 56px;
   border-bottom: 1px solid var(--border);
 }
 
+#particles-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
 .hero-grid {
+  position: relative;
+  z-index: 1;
   display: grid;
   grid-template-columns: 1.3fr 1fr;
   gap: 48px;
   align-items: start;
 }
+
+.avatar-link { display: inline-block; margin-bottom: 20px; }
+
+.avatar {
+  width: 92px;
+  height: 92px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--border);
+  transition: border-color 0.15s ease;
+}
+
+.avatar-link:hover .avatar { border-color: var(--accent-2); }
 
 h1.display {
   font-family: var(--font-display);
@@ -352,7 +346,7 @@ p.body-text {
   font-size: 15.5px;
 }
 
-/* ---------- ticket queue (projects list) ---------- */
+/* ---------- project list ---------- */
 
 .queue {
   border: 1px solid var(--border);
@@ -362,7 +356,7 @@ p.body-text {
 
 .queue-row {
   display: grid;
-  grid-template-columns: 90px 1fr 130px 40px;
+  grid-template-columns: 1fr 170px 30px;
   align-items: center;
   gap: 16px;
   padding: 18px 20px;
@@ -374,11 +368,7 @@ p.body-text {
 
 .queue-row:hover { background: var(--surface); }
 
-.queue-id {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  color: var(--text-muted);
-}
+.queue-row .cat-pill { justify-self: start; }
 
 .queue-title h3 {
   font-family: var(--font-display);
@@ -452,6 +442,54 @@ p.body-text {
 
 .link-row { display: flex; gap: 14px; flex-wrap: wrap; margin: 18px 0 0; }
 
+/* ---------- work experience ---------- */
+
+.exp-item {
+  padding: 22px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.exp-item:first-child { padding-top: 0; }
+.exp-item:last-child { border-bottom: none; }
+
+.exp-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 2px;
+}
+
+.exp-head h3 {
+  font-family: var(--font-display);
+  font-size: 18px;
+  margin: 0;
+}
+
+.exp-dates {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.exp-company {
+  color: var(--accent-2);
+  font-size: 14px;
+  margin: 0 0 10px;
+}
+
+.exp-item ul {
+  margin: 0;
+  padding-left: 18px;
+  color: var(--text-muted);
+  font-size: 14.5px;
+  line-height: 1.65;
+}
+
+.exp-item li { margin-bottom: 4px; }
+
 /* ---------- resume page ---------- */
 
 .resume-grid {
@@ -514,10 +552,10 @@ footer {
   .nav { height: auto; flex-wrap: wrap; padding: 10px 0; gap: 10px; }
   .nav-left { width: 100%; justify-content: space-between; }
   .nav-links { gap: 14px; font-size: 12px; overflow-x: auto; }
-  .status-pill { width: 100%; font-size: 11px; }
   .hero-grid, .resume-grid, .col-3, .col-2 { grid-template-columns: 1fr; }
-  .queue-row { grid-template-columns: 50px 1fr 28px; }
-  .queue-row .badge { display: none; }
+  .queue-row { grid-template-columns: 1fr 28px; }
+  .queue-row .cat-pill { display: none; }
   .shot.split { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr; }
+  .exp-head { flex-direction: column; align-items: flex-start; gap: 2px; }
 }

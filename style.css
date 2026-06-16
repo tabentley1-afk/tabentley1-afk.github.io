@@ -269,7 +269,7 @@ h1.display {
 
 .skill-list li {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 10px;
   font-family: var(--font-mono);
   font-size: 13px;
@@ -285,6 +285,7 @@ h1.display {
   min-width: 7px;
   border-radius: 50%;
   background: var(--accent-2);
+  margin-top: 6px;
 }
 
 /* ---------- generic section ---------- */
